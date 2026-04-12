@@ -78,6 +78,23 @@ body {
   font-weight: 800;
 }
 
+.brand-logo {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  flex: 0 0 auto;
+  border-radius: 10px;
+  display: none;
+}
+
+.brand.has-logo .brand-logo {
+  display: block;
+}
+
+.brand.has-logo .brand-mark {
+  display: none;
+}
+
 .brand-mark {
   width: 34px;
   height: 34px;
