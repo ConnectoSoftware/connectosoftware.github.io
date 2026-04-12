@@ -76,6 +76,17 @@ body {
   text-decoration: none;
   color: var(--ink);
   font-weight: 800;
+  position: relative;
+}
+
+.brand-skeleton {
+  width: 58px;
+  height: 58px;
+  border-radius: 12px;
+  background: linear-gradient(100deg, #e8f4ff 20%, #d8ecff 50%, #e8f4ff 80%);
+  background-size: 240% 100%;
+  animation: logo-loading 1.1s linear infinite;
+  flex: 0 0 auto;
 }
 
 .brand-logo {
@@ -84,15 +95,32 @@ body {
   object-fit: contain;
   flex: 0 0 auto;
   border-radius: 10px;
-  display: none;
+  display: block;
+  opacity: 0;
+  transition: opacity 180ms ease;
 }
 
 .brand.has-logo .brand-logo {
-  display: block;
+  opacity: 1;
+}
+
+.brand.has-logo .brand-skeleton,
+.brand.logo-error .brand-skeleton {
+  display: none;
 }
 
 .brand.has-logo .brand-mark {
   display: none;
+}
+
+@keyframes logo-loading {
+  from {
+    background-position: 100% 50%;
+  }
+
+  to {
+    background-position: 0% 50%;
+  }
 }
 
 .brand-mark {
@@ -453,6 +481,11 @@ h1 {
 }
 
 @media (max-width: 640px) {
+  .brand-skeleton {
+    width: 50px;
+    height: 50px;
+  }
+
   .brand-logo {
     width: 50px;
     height: 50px;
