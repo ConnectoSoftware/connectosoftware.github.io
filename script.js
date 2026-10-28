@@ -64,23 +64,29 @@
     }, 1300);
   }
 
-  /* Carousel: a paged, swipeable list of what we've built */
+  /* Carousel: an auto-advancing deck of what we've built, like slides in a deck */
+  var carousel = document.querySelector(".carousel");
   var track = document.getElementById("carouselTrack");
-  if (track) {
+  if (carousel && track) {
     var slides = Array.prototype.slice.call(track.children);
     var dotsWrap = document.getElementById("carouselDots");
     var prevBtn = document.querySelector(".carousel-arrow.prev");
     var nextBtn = document.querySelector(".carousel-arrow.next");
     var activeIndex = 0;
 
-    var dots = slides.map(function (slide) {
+    var scrollToSlide = function (index) {
+      slides[index].scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", inline: "start", block: "nearest" });
+    };
+
+    var dots = slides.map(function (slide, i) {
       var dot = document.createElement("button");
       dot.type = "button";
       dot.className = "dot";
       dot.setAttribute("role", "tab");
       dot.setAttribute("aria-label", "Show: " + (slide.querySelector(".slide-title") || {}).textContent);
       dot.addEventListener("click", function () {
-        slide.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", inline: "center", block: "nearest" });
+        scrollToSlide(i);
+        pauseThenResume();
       });
       dotsWrap.appendChild(dot);
       return dot;
@@ -114,9 +120,46 @@
 
     var goTo = function (delta) {
       var next = Math.max(0, Math.min(slides.length - 1, activeIndex + delta));
-      slides[next].scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", inline: "center", block: "nearest" });
+      scrollToSlide(next);
     };
-    if (prevBtn) prevBtn.addEventListener("click", function () { goTo(-1); });
-    if (nextBtn) nextBtn.addEventListener("click", function () { goTo(1); });
+    if (prevBtn) prevBtn.addEventListener("click", function () { goTo(-1); pauseThenResume(); });
+    if (nextBtn) nextBtn.addEventListener("click", function () { goTo(1); pauseThenResume(); });
+
+    /* Auto-advance, looping back to the start; pauses while a visitor is
+       looking at or touching the deck, or has the tab in the background. */
+    var AUTO_MS = 4500;
+    var RESUME_AFTER_MS = 6000;
+    var autoTimer = null;
+    var resumeTimer = null;
+
+    var stopAuto = function () {
+      if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+    };
+    var startAuto = function () {
+      if (reduceMotion || autoTimer || document.hidden) return;
+      autoTimer = setInterval(function () {
+        var next = (activeIndex + 1) % slides.length;
+        scrollToSlide(next);
+      }, AUTO_MS);
+    };
+    var pauseThenResume = function () {
+      stopAuto();
+      if (resumeTimer) clearTimeout(resumeTimer);
+      resumeTimer = setTimeout(startAuto, RESUME_AFTER_MS);
+    };
+
+    if (!reduceMotion) {
+      carousel.addEventListener("mouseenter", stopAuto);
+      carousel.addEventListener("mouseleave", startAuto);
+      carousel.addEventListener("touchstart", stopAuto, { passive: true });
+      carousel.addEventListener("touchend", pauseThenResume);
+      carousel.addEventListener("focusin", stopAuto);
+      carousel.addEventListener("focusout", startAuto);
+      document.addEventListener("visibilitychange", function () {
+        if (document.hidden) stopAuto();
+        else startAuto();
+      });
+      startAuto();
+    }
   }
 })();
