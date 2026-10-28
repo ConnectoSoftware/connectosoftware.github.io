@@ -102,96 +102,107 @@
             <path d="M3 13 C 45 2, 85 20, 125 9 S 205 1, 245 12 S 285 7, 297 10" />
           </svg>
         </p>
-        <h1 class="hero-tag reveal">Software for the parts of a business that still run on paper.</h1>
-        <p class="hero-sub reveal">We design and build systems for pharmacies, clinics, schools, shops, and the people who manage them — one problem at a time.</p>
-        <a class="hero-link reveal" href="#work">See the work <span aria-hidden="true">&rarr;</span></a>
+        <p class="hero-tag" aria-label="We build intelligent softwares for your business">
+          <span id="heroTagType" aria-hidden="true">We build intelligent softwares for your business</span><span class="type-caret" aria-hidden="true"></span>
+        </p>
       </div>
-    </section>
-
-    <section class="about" id="about">
-      <div class="about-inner">
-        <p class="section-lede reveal">We started Connecto Software in 2025 because most software skips the boring parts of a business.</p>
-        <p class="about-body reveal">The pharmacy shelf. The attendance register. The grocery delivery truck. Our team works across artificial intelligence, RMG software, video engines, web backend and frontend development, natural language processing, and computer vision — and we move between those depending on what a business actually needs built, not what's easy to sell.</p>
+      <div class="hero-scroll-cue" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v15M6 13l6 6 6-6" /></svg>
       </div>
     </section>
 
     <section class="work" id="work">
       <div class="work-intro">
-        <p class="section-lede reveal">Here's some of what we've built — each one for a business that actually needed it.</p>
+        <p class="section-lede reveal">Here's some of what we've built — and who it was built for.</p>
       </div>
 
-      <div class="work-list">
+      <div class="carousel" role="region" aria-roledescription="carousel" aria-label="Products we've built">
+        <button class="carousel-arrow prev" type="button" aria-label="Previous">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7" /></svg>
+        </button>
 
-        <article class="work-item reveal" id="inventory">
-          <p class="work-name">Inventory management</p>
-          <p class="work-desc">Built for shops and small wholesalers who were still counting stock by hand. Every sale, delivery, and transfer updates the same ledger in real time, so what's on the shelf and what's in the system finally agree.</p>
-        </article>
+        <div class="carousel-track" id="carouselTrack">
 
-        <article class="work-item reveal" id="website">
-          <p class="work-name">Websites and storefronts</p>
-          <p class="work-desc">Biponon, our storefront platform, is the clearest example — a business picks a layout, lists its products, and has a working online store the same day, without touching a line of code.</p>
-        </article>
+          <article class="slide" id="inventory">
+            <svg class="slide-art" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="14" y="14" width="36" height="10" /><rect x="14" y="27" width="36" height="10" /><rect x="14" y="40" width="36" height="10" /></svg>
+            <h3 class="slide-title">Inventory management</h3>
+            <p class="slide-copy">A wholesaler we worked with was still counting stock by hand at closing time, and the numbers never quite matched what was on the shelf. We built them a system where every sale and delivery updates the same ledger automatically.</p>
+          </article>
 
-        <article class="work-item reveal" id="chatbots">
-          <p class="work-name">AI chatbots for Messenger and WhatsApp</p>
-          <p class="work-desc">Built first for sellers who were losing orders to slow replies. The bot answers product and price questions instantly, takes the order, and calls in a person only when the conversation actually needs one.</p>
-        </article>
+          <article class="slide" id="website">
+            <svg class="slide-art" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="10" y="14" width="44" height="34" rx="2" /><line x1="10" y1="22" x2="54" y2="22" /><circle cx="16" cy="18" r="1.3" fill="currentColor" stroke="none" /><circle cx="21" cy="18" r="1.3" fill="currentColor" stroke="none" /></svg>
+            <h3 class="slide-title">Websites and storefronts</h3>
+            <p class="slide-copy">A seller wanted to take orders beyond Messenger but had no way to put a catalogue online without hiring a developer. We built Biponon so they could list products and have a working store the same afternoon.</p>
+          </article>
 
-        <article class="work-item reveal" id="retail">
-          <p class="work-name">Customer tracking for retail stores</p>
-          <p class="work-desc">Footfall, dwell time, and repeat visits, measured quietly from the shop floor itself. It gives a physical retailer the same kind of visibility an online store takes for granted — who came in, and whether they came back.</p>
-        </article>
+          <article class="slide" id="chatbots">
+            <svg class="slide-art" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16h40a4 4 0 0 1 4 4v18a4 4 0 0 1-4 4H30l-8 8v-8h-10a4 4 0 0 1-4-4V20a4 4 0 0 1 4-4z" /><circle cx="24" cy="29" r="1.5" fill="currentColor" stroke="none" /><circle cx="32" cy="29" r="1.5" fill="currentColor" stroke="none" /><circle cx="40" cy="29" r="1.5" fill="currentColor" stroke="none" /></svg>
+            <h3 class="slide-title">AI chatbots for Messenger and WhatsApp</h3>
+            <p class="slide-copy">A business was getting messages on Facebook and WhatsApp all day, but didn't have enough people to reply to every one in time. We built a chatbot that answers instantly, takes the order, and only calls a person in when the conversation really needs one.</p>
+          </article>
 
-        <figure class="work-figure reveal">
-          <img src="assets/services/grocery.jpg" alt="Wooden crates of fresh vegetables arranged in a grid on a market stall" loading="lazy" width="1800" height="1122" />
-        </figure>
+          <article class="slide" id="retail">
+            <svg class="slide-art" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 32s10-16 24-16 24 16 24 16-10 16-24 16S8 32 8 32z" /><circle cx="32" cy="32" r="6" /></svg>
+            <h3 class="slide-title">Customer tracking for retail stores</h3>
+            <p class="slide-copy">A store owner could tell you what sold, but never who walked in and left without buying. We built a quiet system that tracks footfall and repeat visits, so a physical shop can finally see what an online store sees.</p>
+          </article>
 
-        <article class="work-item reveal" id="school">
-          <p class="work-name">School management</p>
-          <p class="work-desc">Attendance, results, fees, and parent communication, handled in one system built for school offices rather than software companies. What used to take a register and three separate ledgers now takes one login.</p>
-        </article>
+          <article class="slide" id="school">
+            <svg class="slide-art" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M32 18c-6-4-14-4-20 0v28c6-4 14-4 20 0 6-4 14-4 20 0V18c-6-4-14-4-20 0z" /><line x1="32" y1="18" x2="32" y2="46" /></svg>
+            <h3 class="slide-title">School management</h3>
+            <p class="slide-copy">A school office was running attendance, fees, and parent calls out of three different registers. We built them one system that replaced all three with a single login.</p>
+          </article>
 
-        <article class="work-item reveal" id="attendance">
-          <p class="work-name">Digital attendance with face recognition</p>
-          <p class="work-desc">A camera at the door replaces the register and the ID card both. Staff are recognized and logged the moment they walk in, and the record feeds straight into payroll instead of waiting for someone to type it up.</p>
-        </article>
+          <article class="slide" id="attendance">
+            <svg class="slide-art" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="32" cy="28" r="14" /><path d="M19 47c4-6 22-6 26 0" /><line x1="15" y1="17" x2="49" y2="17" stroke-dasharray="3 4" /></svg>
+            <h3 class="slide-title">Digital attendance with face recognition</h3>
+            <p class="slide-copy">A factory was losing twenty minutes every morning to a queue at the card reader. We built a camera that recognizes staff at the door and logs them straight into payroll.</p>
+          </article>
 
-        <article class="work-item reveal" id="hr">
-          <p class="work-name">HR, attendance, and payroll for field and shift staff</p>
-          <p class="work-desc">Built for businesses whose staff aren't sitting at a desk — warehouse crews, delivery teams, shift workers. Attendance is logged from wherever the work happens, and payroll is calculated from that record directly.</p>
-        </article>
+          <article class="slide" id="hr">
+            <svg class="slide-art" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="18" y="10" width="28" height="40" rx="3" /><circle cx="32" cy="24" r="6" /><line x1="24" y1="38" x2="40" y2="38" /><line x1="24" y1="43" x2="40" y2="43" /></svg>
+            <h3 class="slide-title">HR, attendance, and payroll for field and shift staff</h3>
+            <p class="slide-copy">A business with delivery and warehouse staff had no clean way to calculate payroll without a stack of paper timesheets. We built attendance tracking that works from wherever the work actually happens.</p>
+          </article>
 
-        <article class="work-item reveal" id="pharmacy">
-          <p class="work-name">Pharmacy inventory and expiry tracking</p>
-          <p class="work-desc">Every batch is tracked from the day it arrives, with alerts well before anything nears its expiry date. A pharmacist spends less time auditing shelves and more time at the counter.</p>
-        </article>
+          <article class="slide" id="pharmacy">
+            <svg class="slide-art" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="14" y="26" width="36" height="14" rx="7" /><line x1="32" y1="26" x2="32" y2="40" /></svg>
+            <h3 class="slide-title">Pharmacy inventory and expiry tracking</h3>
+            <p class="slide-copy">A pharmacist was manually checking expiry dates shelf by shelf, every week. We built batch-level tracking that flags anything nearing its expiry before it becomes a loss.</p>
+          </article>
 
-        <figure class="work-figure reveal">
-          <img src="assets/services/property.jpg" alt="A low-angle view looking up at a residential apartment building against a deep blue sky" loading="lazy" width="1800" height="1285" />
-        </figure>
+          <article class="slide" id="clinic">
+            <svg class="slide-art" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="32" cy="32" r="20" /><line x1="32" y1="22" x2="32" y2="42" /><line x1="22" y1="32" x2="42" y2="32" /></svg>
+            <h3 class="slide-title">Clinic follow-up</h3>
+            <p class="slide-copy">A small clinic kept losing track of which patients needed a follow-up call or a repeat prescription. We built them a simple list that doesn't depend on anyone remembering to check a paper file.</p>
+          </article>
 
-        <article class="work-item reveal" id="clinic">
-          <p class="work-name">Clinic follow-up</p>
-          <p class="work-desc">A simple system for small clinics to track who needs a follow-up call, a test result, or a repeat prescription, and when. Nothing depends on someone remembering to check a paper file.</p>
-        </article>
+          <article class="slide" id="property">
+            <svg class="slide-art" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="16" y="14" width="32" height="36" /><rect x="22" y="20" width="6" height="6" /><rect x="36" y="20" width="6" height="6" /><rect x="22" y="32" width="6" height="6" /><rect x="36" y="32" width="6" height="6" /><rect x="26" y="44" width="12" height="6" /></svg>
+            <h3 class="slide-title">Property management</h3>
+            <p class="slide-copy">An owner managing a building from another city had leases, payments, and repair requests scattered across calls and texts. We built one shared record for all of it.</p>
+          </article>
 
-        <article class="work-item reveal" id="property">
-          <p class="work-name">Property management</p>
-          <p class="work-desc">Built for owners managing property at a distance, often with more than one party involved in a decision. Leases, payments, and maintenance requests are logged in one record instead of scattered across calls and messages.</p>
-        </article>
+          <article class="slide" id="grocery">
+            <svg class="slide-art" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 24h36l-4 22H18z" /><line x1="14" y1="24" x2="50" y2="24" /><path d="M24 24l4-10h8l4 10" /></svg>
+            <h3 class="slide-title">Grocery supplier delivery and demand forecasting</h3>
+            <p class="slide-copy">A grocer ordering from several suppliers on different schedules kept either running out of stock or over-ordering. We built forecasting that times the next order before the shelf goes bare.</p>
+          </article>
 
-        <article class="work-item reveal" id="grocery">
-          <p class="work-name">Grocery supplier delivery and demand forecasting</p>
-          <p class="work-desc">Built for grocers who order from several suppliers on different schedules. It tracks what's moving, forecasts what's about to run low, and times the next order before the shelf actually goes bare.</p>
-        </article>
+        </div>
 
+        <button class="carousel-arrow next" type="button" aria-label="Next">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7" /></svg>
+        </button>
       </div>
+
+      <div class="carousel-dots" id="carouselDots" role="tablist" aria-label="Choose a product"></div>
     </section>
 
     <section class="contact" id="contact">
       <div class="contact-inner">
-        <p class="section-lede reveal">Have a problem like these?</p>
-        <p class="reveal">If a part of your business still depends on a notebook, a spreadsheet, or someone's memory, that's usually where we start. Tell us what it is.</p>
+        <p class="section-lede reveal">Have a different problem?</p>
+        <p class="reveal">We'd love to hear about it — reach out. We're people like you; we just spend our time working in AI, natural language processing, computer vision, and chatbots, alongside web and desktop software development, across all kinds of industries.</p>
         <a class="contact-email reveal" href="mailto:connectosoftware@gmail.com">connectosoftware@gmail.com</a>
       </div>
     </section>
