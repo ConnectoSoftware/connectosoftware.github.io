@@ -78,16 +78,17 @@ a { color: inherit; text-decoration: none; }
   .reveal { transition: none; opacity: 1; transform: none; }
 }
 
-.eyebrow {
-  font-family: var(--serif-body);
-  font-style: italic;
-  font-size: 0.8125rem;
-  letter-spacing: 0.08em;
-  color: var(--accent);
-  margin: 0 0 0.75rem;
+.section-lede {
+  font-family: var(--serif-display);
+  font-weight: 500;
+  font-size: clamp(1.4rem, 2.8vw, 1.9rem);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  margin: 0 0 1.25rem;
+  color: var(--ink);
 }
 
-h1, h2 {
+h1 {
   font-family: var(--serif-display);
   font-weight: 500;
   line-height: 1.12;
@@ -95,93 +96,72 @@ h1, h2 {
   letter-spacing: -0.01em;
 }
 
-/* === Header === */
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  background: color-mix(in srgb, var(--paper) 90%, transparent);
-  backdrop-filter: blur(6px);
-  border-bottom: 1px solid var(--rule);
-}
-.header-inner {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 1rem var(--gutter);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.wordmark {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-family: var(--serif-display);
-  font-size: 1.25rem;
-  font-weight: 600;
-}
-.wordmark-logo { width: 32px; height: auto; }
-.wordmark em { font-style: italic; color: var(--accent); }
-
-.site-nav { display: none; gap: 2rem; }
-.site-nav a {
-  font-size: 0.875rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding-bottom: 2px;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s var(--ease), color 0.2s var(--ease);
-}
-.site-nav a:hover { border-color: var(--accent); color: var(--accent); }
-
-.menu-toggle {
-  display: flex;
-  width: 32px;
-  height: 22px;
-  align-items: center;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-}
-.menu-toggle span,
-.menu-toggle span::before,
-.menu-toggle span::after {
-  content: "";
+/* === Fixed chrome: corner mark, side tab, scroll thread === */
+.corner-mark {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 25;
   display: block;
-  width: 100%;
-  height: 1px;
-  background: var(--ink);
-  position: relative;
-  transition: transform 0.25s var(--ease), opacity 0.25s var(--ease);
+  line-height: 0;
 }
-.menu-toggle span::before { position: absolute; top: -7px; }
-.menu-toggle span::after { position: absolute; top: 7px; }
-body.nav-open .menu-toggle span { background: transparent; }
-body.nav-open .menu-toggle span::before { transform: translateY(7px) rotate(45deg); background: var(--ink); }
-body.nav-open .menu-toggle span::after { transform: translateY(-7px) rotate(-45deg); background: var(--ink); }
+.corner-mark img {
+  width: 34px;
+  height: auto;
+  transition: transform 0.3s var(--ease);
+}
+.corner-mark:hover img { transform: scale(1.1) rotate(-4deg); }
 
-@media (min-width: 760px) {
-  .site-nav { display: flex; }
-  .menu-toggle { display: none; }
+.side-tab {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  background: var(--paper);
+  border: 1px solid var(--rule-strong);
+  border-right: none;
+  padding: 1.1rem 0.6rem;
+  font-family: var(--serif-display);
+  font-style: italic;
+  font-size: 0.9375rem;
+  letter-spacing: 0.02em;
+  z-index: 25;
+  transition: background 0.25s var(--ease), color 0.25s var(--ease);
 }
-@media (max-width: 759px) {
-  .site-nav {
-    display: flex;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    flex-direction: column;
-    gap: 0;
-    background: var(--paper);
-    border-bottom: 1px solid var(--rule);
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s var(--ease);
-  }
-  body.nav-open .site-nav { max-height: 240px; }
-  .site-nav a { padding: 1rem var(--gutter); border-bottom: 1px solid var(--rule); }
+.side-tab:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+.thread {
+  position: fixed;
+  left: 36px;
+  top: 110px;
+  bottom: 110px;
+  width: 1px;
+  background: var(--rule);
+  z-index: 15;
+  pointer-events: none;
+}
+.thread-marker {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 7px;
+  height: 7px;
+  margin-left: -3.5px;
+  margin-top: -3.5px;
+  border-radius: 50%;
+  background: var(--accent);
+  transition: top 0.08s linear;
+}
+@media (max-width: 900px) {
+  .thread { display: none; }
+}
+@media (max-width: 560px) {
+  .side-tab { font-size: 0.8125rem; padding: 0.85rem 0.45rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .thread-marker { transition: none; }
 }
 
 /* === Hero === */
@@ -256,7 +236,6 @@ body.nav-open .menu-toggle span::after { transform: translateY(-7px) rotate(-45d
 /* === About === */
 .about { padding: 5.5rem 0; border-bottom: 1px solid var(--rule); }
 .about-inner { max-width: 680px; margin: 0 auto; padding: 0 var(--gutter); }
-.about h2 { font-size: clamp(1.6rem, 3.4vw, 2.1rem); }
 .about-body { font-size: 1.1875rem; color: var(--ink-soft); }
 .about-body::first-letter {
   font-family: var(--serif-display);
@@ -271,7 +250,6 @@ body.nav-open .menu-toggle span::after { transform: translateY(-7px) rotate(-45d
 /* === Work section === */
 .work { padding: 5.5rem 0 2rem; }
 .work-intro { max-width: 680px; margin: 0 auto 3rem; padding: 0 var(--gutter); }
-.work-intro h2 { font-size: clamp(1.6rem, 3.4vw, 2.1rem); }
 
 .work-list { max-width: 740px; margin: 0 auto; padding: 0 var(--gutter); }
 
@@ -298,17 +276,10 @@ body.nav-open .menu-toggle span::after { transform: translateY(-7px) rotate(-45d
   height: auto;
   filter: grayscale(35%) contrast(1.02) brightness(1.01);
 }
-.work-figure figcaption {
-  margin: 0.6rem 0.2rem 0.2rem;
-  font-style: italic;
-  font-size: 0.8125rem;
-  color: var(--ink-soft);
-}
 
 /* === Contact === */
 .contact { padding: 6rem 0 7rem; border-top: 1px solid var(--rule); text-align: center; }
 .contact-inner { max-width: 600px; margin: 0 auto; padding: 0 var(--gutter); }
-.contact h2 { font-size: clamp(1.7rem, 3.6vw, 2.3rem); }
 .contact p { color: var(--ink-soft); font-size: 1.0625rem; }
 .contact-email {
   display: inline-block;
