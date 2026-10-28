@@ -64,7 +64,7 @@
     }, 1300);
   }
 
-  /* Carousel: an auto-advancing deck of what we've built, like slides in a deck */
+  /* Carousel: a deck of what we've built — paged by hand, next card peeking in */
   var carousel = document.querySelector(".carousel");
   var track = document.getElementById("carouselTrack");
   if (carousel && track) {
@@ -78,6 +78,11 @@
       slides[index].scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", inline: "start", block: "nearest" });
     };
 
+    /* The next button pulses gently until the visitor pages through once */
+    var dismissNudge = function () {
+      if (nextBtn) nextBtn.classList.remove("is-nudging");
+    };
+
     var dots = slides.map(function (slide, i) {
       var dot = document.createElement("button");
       dot.type = "button";
@@ -86,7 +91,7 @@
       dot.setAttribute("aria-label", "Show: " + (slide.querySelector(".slide-title") || {}).textContent);
       dot.addEventListener("click", function () {
         scrollToSlide(i);
-        pauseThenResume();
+        dismissNudge();
       });
       dotsWrap.appendChild(dot);
       return dot;
@@ -122,44 +127,8 @@
       var next = Math.max(0, Math.min(slides.length - 1, activeIndex + delta));
       scrollToSlide(next);
     };
-    if (prevBtn) prevBtn.addEventListener("click", function () { goTo(-1); pauseThenResume(); });
-    if (nextBtn) nextBtn.addEventListener("click", function () { goTo(1); pauseThenResume(); });
-
-    /* Auto-advance, looping back to the start; pauses while a visitor is
-       looking at or touching the deck, or has the tab in the background. */
-    var AUTO_MS = 4500;
-    var RESUME_AFTER_MS = 6000;
-    var autoTimer = null;
-    var resumeTimer = null;
-
-    var stopAuto = function () {
-      if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
-    };
-    var startAuto = function () {
-      if (reduceMotion || autoTimer || document.hidden) return;
-      autoTimer = setInterval(function () {
-        var next = (activeIndex + 1) % slides.length;
-        scrollToSlide(next);
-      }, AUTO_MS);
-    };
-    var pauseThenResume = function () {
-      stopAuto();
-      if (resumeTimer) clearTimeout(resumeTimer);
-      resumeTimer = setTimeout(startAuto, RESUME_AFTER_MS);
-    };
-
-    if (!reduceMotion) {
-      carousel.addEventListener("mouseenter", stopAuto);
-      carousel.addEventListener("mouseleave", startAuto);
-      carousel.addEventListener("touchstart", stopAuto, { passive: true });
-      carousel.addEventListener("touchend", pauseThenResume);
-      carousel.addEventListener("focusin", stopAuto);
-      carousel.addEventListener("focusout", startAuto);
-      document.addEventListener("visibilitychange", function () {
-        if (document.hidden) stopAuto();
-        else startAuto();
-      });
-      startAuto();
-    }
+    if (prevBtn) prevBtn.addEventListener("click", function () { goTo(-1); dismissNudge(); });
+    if (nextBtn) nextBtn.addEventListener("click", function () { goTo(1); dismissNudge(); });
+    track.addEventListener("scroll", dismissNudge, { passive: true, once: true });
   }
 })();
